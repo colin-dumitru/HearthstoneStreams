@@ -3,17 +3,35 @@ function start() {
 }
 
 function loadOptions() {
-	var apiKey = chrome.storage.sync.get('apikey', function(value) {
-		$("#api_key").val(value.apikey);		
+	var apiKey = chrome.storage.sync.get('streams', function(value) {
+		var streams = value.streams;
+
+		for (var i in streams) {
+			$('#' + streams[i]).attr('checked', true);
+		}
 	});
 }	
 
 function save() {
 	chrome.storage.sync.set({
-		'apikey': $("#api_key").val()
+		'streams': getCheckedStreams()
 	}, function() {
 		alert('Saved!');
 	});
+}
+
+function getCheckedStreams() {
+	var streams = [];
+
+	$(".stream_checkbox").each(function(elem) {
+		var moi = $(this);
+
+		if(moi.is(":checked")) {
+			streams.push(moi.attr('id'));
+		}
+	});
+
+	return streams;
 }
 
 function onload() {

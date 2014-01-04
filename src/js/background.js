@@ -11,7 +11,7 @@ var CLIENT_ID = '4vuxrrhrnica3vvknwc11jdy1k07oum',
 
 function optionsChangedListener() {
 	chrome.storage.sync.get('streams', function(value) {
-		//todo options = value;
+		options = value;
 		getStreams();
 	});
 }

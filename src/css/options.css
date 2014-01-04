@@ -3,23 +3,7 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	font-family: 'Exo 2', sans-serif;
-}
-
-.options_header{
-	width: 100%;
-	height: 50px;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ECA80A), color-stop(100%,#FFB100));
-	overflow: hidden;
-}
-
-.options_header > span{
-	color: #FFFFFF;
-	font-size: 90px;
-	font-weight: bold;
-	margin-left: 20%;
-	float: left;
-	margin-top: -30px;
+	font-family: 'News Cycle', sans-serif;
 }
 
 .options{
@@ -30,18 +14,9 @@ body {
 	color: #5A5A5A;
 }
 
-.options input {
-	border: none;
-	border-bottom: 1px solid black;
-	width: 300px;
-	font-size: 20px;
-	color: #5A5A5A;
-}
-
-.begging_content{
-	position: absolute;
-	right: 0;
-	bottom: 0;
+input[type=checkbox] {
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  padding: 10px;
 }
 
 #save_button{

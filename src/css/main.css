@@ -7,7 +7,7 @@ body {
 	padding: 0;
 	width: 520px;
 	height: 450px;
-	font-family: 'Prosto One', cursive;
+	font-family: 'Montserrat Alternates', sans-serif;
 	background: #272727;
 }
 
@@ -54,7 +54,7 @@ body {
 	font-size: 15px;
 	height: 50%;
 	overflow: hidden;
-	color: #E7E7E7;
+	color: #FDFDFD;
 }
 
 .stream_viewers{
