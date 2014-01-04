@@ -33,6 +33,10 @@ function template(id) {
 
 function onload() {
 	update();
+
+	$(document).on('click', 'a', function(){
+		chrome.tabs.create({url: $(this).attr('href')});
+	});
 }
 
 function bind() {
