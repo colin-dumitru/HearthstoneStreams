@@ -48,11 +48,11 @@ function getTwitchStreams() {
 
 function twitchJsonToStream(json) {
 	return {
-		title : json.name,
+		title : json.channel.status,
 		logo : json.preview,
 		viewers : json.viewers,
 		user : json.channel.display_name,
-		url : json._links.self
+		url : json.channel.url
 	}
 }
 
@@ -73,7 +73,10 @@ function sendData() {
 
 		view.streams = streams;
 		view.options = options;
-		view.update();
+
+		if(view.update) {
+			view.update();
+		};
 	}
 }
 

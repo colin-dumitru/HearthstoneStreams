@@ -14,8 +14,9 @@ function update() {
 	for (var i in streams) {
 		var stream = streams[i];
 
-		container.append(template('stream_template',
-			stream.title, stream.viewers, stream.user, stream.url, stream.logo));
+		container.append(
+			template('stream_template',stream.title, stream.viewers, stream.user, stream.url, stream.logo)
+				.addClass('stream_container'));
 	}
 }
 

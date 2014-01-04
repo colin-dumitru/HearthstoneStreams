@@ -5,13 +5,30 @@ html{
 body {
 	margin: 0;
 	padding: 0;
-	width: 500px;
+	width: 520px;
 	height: 450px;
 	font-family: 'Prosto One', cursive;
-	background: #E9E9E9;
+	background: #272727;
+}
+
+.stream_container {
+	width: 240px;
+	height: 150px;
+	position: relative;
+	float: left;
+	margin-top: 15px;
+	margin-left: 15px;
+	border: 1px solid #B1B1B1;
+	border-left: orange 2px solid;
+	box-shadow: 0 0 10px black;
+}
+
+.stream_container:hover {
+	box-shadow: 0 0 10px white;
 }
 
 .stream {
+	display: block;
 	width: 240px;
 	height: 150px;
 	position: relative;
@@ -34,4 +51,34 @@ body {
 
 .stream_title{
 	text-align: center;
+	font-size: 15px;
+	height: 50%;
+	overflow: hidden;
+	color: #E7E7E7;
+}
+
+.stream_viewers{
+	color: #FF0000;
+	font-size: 25px;
+	width: 100px;
+	float: left;
+	text-align: center;
+}
+
+.stream_by{
+	font-size: 10px;
+	color: #ADADAD;
+	width: 30px;
+	margin-top: 15px;
+	float: left;
+	text-align: center;
+}
+
+.stream_user{
+	font-size: 15px;
+	color: #E7E7E7;
+	width: 100px;
+	margin-top: 10px;
+	float: left;
+	overflow: hidden;
 }
