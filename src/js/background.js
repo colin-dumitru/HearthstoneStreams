@@ -1,9 +1,7 @@
 var CLIENT_ID = '4vuxrrhrnica3vvknwc11jdy1k07oum',
 	streams = [],
 	streamsRemaining = 0,
-	options = {
-		streams : ['twitch']
-	},
+	options = {},
 
 	streamToBinder = {
 		'twitch' : getTwitchStreams
@@ -12,8 +10,19 @@ var CLIENT_ID = '4vuxrrhrnica3vvknwc11jdy1k07oum',
 function optionsChangedListener() {
 	chrome.storage.sync.get('streams', function(value) {
 		options = value;
+
+		if(!options.streams) {
+			createDefaultStreams();
+		}
 		getStreams();
 	});
+}
+
+function createDefaultStreams() {
+	options = {
+		streams : ['twitch']
+	}
+	chrome.storage.sync.set({ 'streams': options.streams });
 }
 
 function getStreams() {
@@ -37,7 +46,6 @@ function getTwitchStreams() {
 		},
 		success: function(newData) {
 			streams = newData.streams.map(twitchJsonToStream);
-			console.log(streams);
 			sendData();
 		},
 		error: function() {
