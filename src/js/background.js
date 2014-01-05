@@ -1,4 +1,5 @@
 var CLIENT_ID = '4vuxrrhrnica3vvknwc11jdy1k07oum',
+	previousStreams = [],
 	streams = [],
 	streamsRemaining = 0,
 	options = {},
@@ -8,10 +9,10 @@ var CLIENT_ID = '4vuxrrhrnica3vvknwc11jdy1k07oum',
 	};
 
 function optionsChangedListener() {
-	chrome.storage.sync.get('streams', function(value) {
+	chrome.storage.sync.get(['streams', 'favourites'], function(value) {
 		options = value;
 
-		if(!options.streams) {
+		if(!options.streams || !options.favourites) {
 			createDefaultStreams();
 		}
 		getStreams();
@@ -20,12 +21,14 @@ function optionsChangedListener() {
 
 function createDefaultStreams() {
 	options = {
-		streams : ['twitch']
+		streams : options.streams || ['twitch'],
+		favourites : options.favourites || {}
 	}
-	chrome.storage.sync.set({ 'streams': options.streams });
+	chrome.storage.sync.set(options);
 }
 
 function getStreams() {
+	previousStreams = streams.map(function(stream) { return stream.url });
 	streams = [];
 	streamsRemaining = options.streams.length;
 
@@ -74,6 +77,32 @@ function sendData() {
 
 	chrome.browserAction.setBadgeText({text: String(streams.length)});
 
+	sendDataToView();
+	checkForNotifications();
+}
+
+function checkForNotifications() {
+	for (var i in streams) {
+		var stream = streams[i];
+
+		if(options.favourites[stream.url] && previousStreams.indexOf(stream.url) == -1) {
+			showStreamNotification(stream);
+		}
+	}
+}
+
+function showStreamNotification(stream) {
+	chrome.notifications.create(stream.url, {
+		type: "basic",
+		title: stream.user + " went online!",
+		message: "A stream you are watching has gone online!",
+		iconUrl: "icon48.png",
+		buttons: [{ title: 'View Stream'}]
+	}, function() {
+	});
+}
+
+function sendDataToView() {
 	var views = chrome.extension.getViews();
 
 	for (var i = 0; i < views.length; i++) {
@@ -93,6 +122,10 @@ function run() {
 	optionsChangedListener();	
 
 	window.setInterval(getStreams, 5000);
+
+	chrome.notifications.onButtonClicked.addListener(function(notifId) {
+	    chrome.tabs.create({url: notifId});		
+	});
 }
 
 run();

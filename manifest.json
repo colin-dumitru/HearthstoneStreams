@@ -13,7 +13,8 @@
     "https://api.twitch.tv/",
     "storage",
     "background",
-    "tabs"
+    "tabs",
+    "notifications"
   ],
   "options_page": "src/options.html",
 
@@ -24,9 +25,16 @@
   },
 
   "background": {
-    "scripts": ["src/js/jquery.js", "src/js/background.js"],
-    "persistent": false
+    "scripts": ["src/js/jquery.js", "src/js/background.js"]
   },
+
+  "content_scripts": [
+    {
+      "matches": ["http://www.twitch.tv/*"],
+      "exclude_matches": ["http://www.twitch.tv/*/*"],
+      "js": ["src/js/jquery.js", "src/js/twitch.js"]
+    }
+  ],
 
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
