@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "HearthStone Streams",
-  "description": "This extension displays currently active Hearthstone streams.",
-  "version": "0.2.0",
+  "description": "This extension displays currently active Hearthstone streams and notifies you when your favorite go online.",
+  "version": "0.2.1",
 
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
