@@ -32,3 +32,8 @@ input[type=checkbox] {
 	border: 1px solid #006916;
 	cursor: pointer;
 }
+
+h3 {
+	border-left: 3px solid orange;
+	padding-left: 5px;
+}

@@ -15,7 +15,7 @@ function update() {
 		var stream = streams[i];
 
 		container.append(
-			template('stream_template',stream.title, stream.viewers, stream.user, stream.url, stream.logo)
+			template('stream_template', stream.title, stream.viewers, stream.user, stream.url, stream.logo)
 				.addClass('stream_container'));
 	}
 }

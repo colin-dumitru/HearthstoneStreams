@@ -3,7 +3,7 @@
 
   "name": "HearthStone Streams",
   "description": "This extension displays currently active Hearthstone streams.",
-  "version": "0.1.5",
+  "version": "0.2.0",
 
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
