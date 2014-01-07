@@ -1,8 +1,9 @@
-var	jq = chrome.extension.getBackgroundPage().$,
- 	streams = chrome.extension.getBackgroundPage().streams,
-	options = chrome.extension.getBackgroundPage().options;
-
 function start() {
+	window.$ = chrome.extension.getBackgroundPage().$;
+ 	window.streams = chrome.extension.getBackgroundPage().streams;
+	window.options = chrome.extension.getBackgroundPage().options;
+	window.template_cache = {};
+
 	$(document).ready(onload);
 }	
 
@@ -21,7 +22,11 @@ function update() {
 }
 
 function template(id) {
-	var script = $('#' + id, document).text();
+	var script = template_cache[id];
+	if(script == null) {
+		script = $('#' + id, document).text();
+		template_cache[id] = script;
+	}
 
 	for (var i = 1; i < arguments.length; i++) {
 		script = script.replace('$' + i, arguments[i]);
@@ -49,7 +54,7 @@ function bind() {
 	});
 }
 
-start();
+window.setTimeout(start, 10);
 
 //--------------------------------------------------------------------------
 

@@ -83,3 +83,10 @@ body {
 	float: left;
 	overflow: hidden;
 }
+
+.loading_text{
+	margin-top: 50%;
+	text-align: center;
+	font-size: 25px;
+	color: white;
+}
