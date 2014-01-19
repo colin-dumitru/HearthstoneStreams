@@ -3,7 +3,7 @@ var isNotifyEnabled = false,
 	notifyButton;
 
 function hs_onload() {
-	$('#channel_actions').append(createNotifyButton());
+	$('.channel-actions').find('.buttons').append(createNotifyButton());
 
 	chrome.storage.onChanged.addListener(optionsChangedListener);
 	optionsChangedListener();	
